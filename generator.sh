@@ -7,4 +7,4 @@ TARGET="${2:-api/$API_NAME-json}"
 
 echo "FETCHING $BASE_URL/$TARGET"
 
-openapi-generator-cli generate -i $BASE_URL/$TARGET --generator-name typescript-axios -o app/src/api/$API_NAME --additional-properties=useSingleRequestParameter=true --skip-validate-spec
+openapi-generator-cli generate -i $BASE_URL/$TARGET --generator-name typescript-axios -o src/api/$API_NAME --additional-properties=useSingleRequestParameter=true --skip-validate-spec

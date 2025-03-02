@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styles from "./TodoInput.module.css";
 import LabelInput from "../LabelInput/LabelInput";
+import { Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 interface TodoInputProps {
   onAdd: (title: string, description: string) => void;
@@ -13,6 +15,9 @@ const TodoInput = ({ onAdd }: TodoInputProps) => {
   const handleAdd = () => {
     onAdd(newTodo, newDescription);
   };
+
+  const theme = useTheme();
+
   const inputs = [
     {
       label: "عنوان",
@@ -41,7 +46,22 @@ const TodoInput = ({ onAdd }: TodoInputProps) => {
           onChange={input.onChange}
         />
       ))}
-      <button onClick={handleAdd}>اضافه کردن</button>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleAdd}
+        fullWidth
+        sx={{
+          backgroundColor: theme.palette.primary.main,
+          "&:hover": {
+            backgroundColor: theme.palette.primary.dark,
+          },
+          fontSize: "16px",
+          padding: "5px 24px",
+        }}
+      >
+        اضافه کردن
+      </Button>
     </div>
   );
 };

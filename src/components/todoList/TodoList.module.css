@@ -49,7 +49,7 @@ li span:hover {
   color: #007bff;
 }
 
-button {
+/* button {
   padding: 5px 12px;
   font-size: 14px;
   border-radius: 4px;
@@ -81,7 +81,7 @@ button.edit {
 button.edit:hover {
   background-color: #e0a800;
   transform: scale(1.05);
-}
+} */
 
 input {
   padding: 8px 12px;
@@ -100,7 +100,7 @@ input:focus {
   outline: none;
 }
 
-button.save,
+/* button.save,
 button.cancel {
   background-color: #28a745;
   color: white;
@@ -124,7 +124,7 @@ button.cancel {
 
 button.cancel:hover {
   background-color: #c82333;
-}
+} */
 
 .inputGroup {
   display: flex;
@@ -145,8 +145,7 @@ button.cancel:hover {
   font-size: 16px;
   width: 100%;
 }
-
-.editForm .buttonGroup {
+.buttonGroup {
   display: flex;
   gap: 10px;
   justify-content: flex-end;

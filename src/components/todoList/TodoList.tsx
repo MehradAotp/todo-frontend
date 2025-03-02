@@ -2,6 +2,8 @@ import { TodoOutput } from "../../api/todo";
 import LabelInput from "../LabelInput/LabelInput";
 import styles from "./TodoList.module.css";
 import { useState } from "react";
+import { Button } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 interface TodoListProps {
   todos: TodoOutput[];
@@ -14,6 +16,8 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
   const [editingTodoId, setEditingTodoId] = useState<string | null>(null);
   const [updatedTitle, setUpdatedTitle] = useState<string>("");
   const [updatedDescription, setUpdatedDescription] = useState<string>("");
+
+  const theme = useTheme();
 
   const handleEdit = (todo: TodoOutput) => {
     setEditingTodoId(todo._id);
@@ -54,15 +58,36 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
                   />
                 </div>
                 <div className={styles.buttonGroup}>
-                  <button className={styles.save} onClick={handleSave}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleSave}
+                    size="small"
+                    sx={{
+                      gap: 1,
+                      fontSize: "0.8rem",
+                      padding: "5px 24px",
+                      backgroundColor: theme.palette.primary.main,
+                      "&:hover": {
+                        backgroundColor: theme.palette.primary.dark,
+                      },
+                    }}
+                  >
                     ذخیره
-                  </button>
-                  <button
-                    className={styles.cancel}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
                     onClick={() => setEditingTodoId(null)}
+                    size="small"
+                    sx={{
+                      gap: 1,
+                      fontSize: "0.8rem",
+                      padding: "5px 24px",
+                    }}
                   >
                     لغو
-                  </button>
+                  </Button>
                 </div>
               </div>
             ) : (
@@ -72,18 +97,32 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
                   <p className={styles.todoDescription}>{todo.description}</p>
                 )}
                 <div className={styles.buttonGroup}>
-                  <button
-                    className={styles.edit}
+                  <Button
+                    variant="contained"
+                    color="primary"
                     onClick={() => handleEdit(todo)}
+                    size="small"
+                    sx={{
+                      gap: 1,
+                      fontSize: "0.8rem",
+                      padding: "5px 24px",
+                    }}
                   >
                     ویرایش
-                  </button>
-                  <button
-                    className={styles.delete}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="error"
                     onClick={() => onDelete(todo._id)}
+                    size="small"
+                    sx={{
+                      gap: 1,
+                      fontSize: "0.8rem",
+                      padding: "5px 24px",
+                    }}
                   >
                     حذف
-                  </button>
+                  </Button>
                 </div>
               </div>
             )}

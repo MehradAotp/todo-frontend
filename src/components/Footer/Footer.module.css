@@ -1,0 +1,106 @@
+.footer {
+  background: #556e88;
+  color: #ecf0f1;
+  padding: 3rem 0 0;
+  margin-top: auto;
+  direction: rtl;
+  border-radius: 4px;
+}
+
+.footerContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  text-align: right;
+}
+
+.footerSection {
+  margin-bottom: 2rem;
+}
+
+.footerTitle {
+  font-size: 1.5rem;
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.footerSubtitle {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #bdc3c7;
+}
+
+.footerText {
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+.footerText span {
+  display: block;
+  text-align: right;
+  direction: rtl;
+}
+
+.footerLinks {
+  list-style: none;
+  color: #000000;
+  padding: 0;
+  padding-right: 1rem;
+}
+
+.footerLinks li {
+  margin-bottom: 0.5rem;
+  text-align: right;
+  direction: rtl;
+  background: none;
+}
+
+.footerLink {
+  color: #ffffff !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  padding: 0.3rem 0;
+  display: block;
+  background: transparent;
+  font-family: "IRANSans";
+}
+
+.footerLink:hover {
+  color: #3498db !important;
+}
+.footerLinkItem {
+  width: 100%;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  direction: ltr;
+  justify-content: flex-end;
+}
+
+.icon {
+  font-size: 1.5rem !important;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: #3498db;
+}
+
+.footerBottom {
+  background: #34495e;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+  }
+}

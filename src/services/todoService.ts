@@ -1,29 +1,28 @@
-import axios from "axios";
+import { TodoOutput, TodosApi } from "../api/todo";
 
-const API_URL = "http://localhost:3025/todos";
+const todosApi = new TodosApi(undefined, import.meta.env.VITE_API_BASE_URL);
 
-export interface Todo {
-  _id: string;
-  title: string;
-  description: string;
-  isDone: boolean;
-}
-
-export const getTodos = async (): Promise<Todo[]> => {
-  const response = await axios.get(API_URL);
+export const getTodos = async (): Promise<TodoOutput[]> => {
+  const response = await todosApi.findAll();
   return response.data;
 };
 
-export const getTodo = async (id: string): Promise<Todo> => {
-  const response = await axios.get(`${API_URL}/${id}`);
+export const getTodo = async (id: string): Promise<TodoOutput> => {
+  const response = await todosApi.findOne({ id });
   return response.data;
 };
 
 export const createTodo = async (
   title: string,
   description: string
-): Promise<Todo> => {
-  const response = await axios.post(API_URL, { title, description });
+): Promise<TodoOutput> => {
+  const response = await todosApi.create({
+    createTodo: {
+      title,
+      description,
+      isDone: false,
+    },
+  });
   return response.data;
 };
 
@@ -31,19 +30,22 @@ export const updateTodo = async (
   id: string,
   title: string,
   description: string
-): Promise<Todo> => {
-  const response = await axios.patch(`${API_URL}/${id}`, {
-    title,
-    description,
+): Promise<TodoOutput> => {
+  const response = await todosApi.update({
+    id,
+    updateTodo: {
+      title,
+      description,
+    },
   });
   return response.data;
 };
 
-export const toggleTodo = async (id: string): Promise<Todo> => {
-  const response = await axios.patch(`${API_URL}/${id}/toggle`);
+export const toggleTodo = async (id: string): Promise<TodoOutput> => {
+  const response = await todosApi.toggleStatus({ id });
   return response.data;
 };
 
 export const deleteTodo = async (id: string): Promise<void> => {
-  await axios.delete(`${API_URL}/${id}`);
+  await todosApi._delete({ id });
 };

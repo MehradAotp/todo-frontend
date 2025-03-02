@@ -1,10 +1,10 @@
-import { Todo } from "../../services/todoService";
+import { TodoOutput } from "../../api/todo";
 import LabelInput from "../LabelInput/LabelInput";
 import styles from "./TodoList.module.css";
 import { useState } from "react";
 
 interface TodoListProps {
-  todos: Todo[];
+  todos: TodoOutput[];
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
   onUpdate: (id: string, title: string, description: string) => void;
@@ -15,15 +15,15 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
   const [updatedTitle, setUpdatedTitle] = useState<string>("");
   const [updatedDescription, setUpdatedDescription] = useState<string>("");
 
-  const handleEdit = (todo: Todo) => {
+  const handleEdit = (todo: TodoOutput) => {
     setEditingTodoId(todo._id);
     setUpdatedTitle(todo.title);
     setUpdatedDescription(todo.description);
   };
 
   const handleSave = () => {
-    if (updatedTitle.trim() && updatedDescription.trim()) {
-      onUpdate(editingTodoId!, updatedTitle, updatedDescription);
+    if (editingTodoId && updatedTitle.trim() && updatedDescription.trim()) {
+      onUpdate(editingTodoId, updatedTitle, updatedDescription);
       setEditingTodoId(null);
       setUpdatedTitle("");
       setUpdatedDescription("");

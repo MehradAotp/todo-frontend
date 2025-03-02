@@ -1,3 +1,3 @@
-export default function aboutUs() {
-  return <div>hello</div>;
+export default function AboutUs() {
+  return <div>درباره ما</div>;
 }

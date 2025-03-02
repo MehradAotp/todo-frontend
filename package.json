@@ -11,13 +11,17 @@
     "api:todo": "./generator.sh todo swagger-json"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.66.11",
+    "@tanstack/react-query-devtools": "4",
     "axios": "^1.8.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-query": "^3.39.3",
     "react-router-dom": "^7.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@tanstack/eslint-plugin-query": "4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",

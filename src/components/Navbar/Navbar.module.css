@@ -27,6 +27,7 @@
 .links {
   display: flex;
   gap: 2rem;
+  flex-direction: row-reverse;
   align-items: center;
 }
 

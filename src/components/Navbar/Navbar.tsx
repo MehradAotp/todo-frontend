@@ -25,6 +25,22 @@ const Navbar = () => {
           >
             درباره ما
           </NavLink>
+          <NavLink
+            to="/aboutUs"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            تماس با ما
+          </NavLink>
+          <NavLink
+            to="/aboutUs"
+            className={({ isActive }) =>
+              isActive ? `${styles.link} ${styles.active}` : styles.link
+            }
+          >
+            انتقادات و پیشنهادات
+          </NavLink>
         </div>
       </div>
     </nav>

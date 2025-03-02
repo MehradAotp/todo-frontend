@@ -81,6 +81,7 @@
   border-radius: 50%;
   object-fit: cover;
   margin: 0 auto 1rem;
+  border: 2px solid #eee;
 }
 
 .memberName {

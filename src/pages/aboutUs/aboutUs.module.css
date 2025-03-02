@@ -106,10 +106,6 @@
 .mapSection {
   direction: ltr;
 }
-.mapSection iframe {
-  direction: ltr;
-  height: 100%;
-}
 
 @media (max-width: 768px) {
   .aboutContent {

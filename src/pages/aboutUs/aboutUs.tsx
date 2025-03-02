@@ -50,11 +50,12 @@ export default function AboutUs() {
 
           <div className={styles.mapSection}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.676276236199!2d51.38827731526915!3d35.71524598018525!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0109b78d3d61%3A0xdb7aed4b0a43f9f2!2sAzadi%20Tower!5e0!3m2!1sen!2sir!4v1629297217593!5m2!1sen!2sir"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d490.17574554233113!2d51.321179868605896!3d35.73289274376197!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8dfd0036649db5%3A0xbeda90060e39a59e!2sKARNAVAL!5e0!3m2!1sen!2s!4v1740921374684!5m2!1sen!2s"
               width="100%"
-              height="300"
+              height="100%"
               style={{ border: 0, borderRadius: "8px" }}
               allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
               loading="lazy"
             ></iframe>
           </div>

@@ -2,8 +2,19 @@ import { TodoOutput } from "../../api/todo";
 import LabelInput from "../LabelInput/LabelInput";
 import styles from "./TodoList.module.css";
 import { useState } from "react";
-import { Button } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Switch,
+  FormControlLabel,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import DeleteIcon from "@mui/icons-material/Delete";
+import CloseIcon from "@mui/icons-material/Close";
+import EditIcon from "@mui/icons-material/Edit";
 
 interface TodoListProps {
   todos: TodoOutput[];
@@ -16,6 +27,8 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
   const [editingTodoId, setEditingTodoId] = useState<string | null>(null);
   const [updatedTitle, setUpdatedTitle] = useState<string>("");
   const [updatedDescription, setUpdatedDescription] = useState<string>("");
+  const [openDialog, setOpenDialog] = useState(false);
+  const [todoToDelete, setTodoToDelete] = useState<string | null>(null);
 
   const theme = useTheme();
 
@@ -31,6 +44,22 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
       setEditingTodoId(null);
       setUpdatedTitle("");
       setUpdatedDescription("");
+    }
+  };
+
+  const handleDelete = (id: string) => {
+    setTodoToDelete(id);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleConfirmDelete = () => {
+    if (todoToDelete) {
+      onDelete(todoToDelete);
+      setOpenDialog(false);
     }
   };
 
@@ -92,7 +121,17 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
               </div>
             ) : (
               <div className={styles.viewTodo}>
-                <span onClick={() => onToggle(todo._id)}>{todo.title}</span>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={todo.isDone}
+                      onChange={() => onToggle(todo._id)}
+                      color="primary"
+                    />
+                  }
+                  labelPlacement="top"
+                  label={todo.title}
+                />
                 {todo.description && (
                   <p className={styles.todoDescription}>{todo.description}</p>
                 )}
@@ -107,19 +146,21 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
                       fontSize: "0.8rem",
                       padding: "5px 24px",
                     }}
+                    startIcon={<EditIcon />}
                   >
                     ویرایش
                   </Button>
                   <Button
                     variant="contained"
                     color="error"
-                    onClick={() => onDelete(todo._id)}
+                    onClick={() => handleDelete(todo._id)}
                     size="small"
                     sx={{
                       gap: 1,
                       fontSize: "0.8rem",
                       padding: "5px 24px",
                     }}
+                    startIcon={<DeleteIcon />}
                   >
                     حذف
                   </Button>
@@ -129,6 +170,31 @@ const TodoList = ({ todos, onToggle, onDelete, onUpdate }: TodoListProps) => {
           </li>
         ))}
       </ul>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>آیا مطمئن هستید؟</DialogTitle>
+        <DialogContent>
+          <p>آیا از حذف این وظیفه اطمینان دارید؟</p>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleCloseDialog}
+            variant="contained"
+            color="primary"
+            startIcon={<CloseIcon />}
+          >
+            لغو
+          </Button>
+          <Button
+            onClick={handleConfirmDelete}
+            variant="contained"
+            color="error"
+            startIcon={<DeleteIcon />}
+          >
+            حذف
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
